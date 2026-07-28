@@ -5,6 +5,8 @@
 WATCHMAN JS is a lightweight authentication library that simplifies OAuth integration across multiple platforms. Instead of handling different OAuth flows separately, you get a unified and easy-to-use interface.
 
 ---
+<!-- ad space -->
+
 ## 🌐 Supported Platforms
 
 - Google  
