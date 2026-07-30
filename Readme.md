@@ -319,6 +319,34 @@ app.get("/api/auth/linkedin/callback", async (req, res) => {
   return res.json(data);
 });
 ```
+### 🔐 LinkedIn Authentication
+``` javascript
+// import package
+const { LinkedInLogin, LinkedInCallback } = require("@kartikgangil/watchman_js");
+
+// initate login with Linked In 
+app.get("/linkedin", (req, res) => {
+  const uri = LinkedInLogin(
+    linkedinClientId,
+    "http://localhost:8000/api/auth/linkedin/callback"
+  );
+
+  return res.redirect(uri);
+});
+
+// handle callback
+app.get("/api/auth/linkedin/callback", async (req, res) => {
+  const data = await LinkedInCallback(
+    req.query.code,
+    linkedinClientId,
+    linkedinClientSecret,
+    "http://localhost:8000/api/auth/linkedin/callback"
+  );
+
+  console.log(data);
+  return res.json(data);
+});
+```
 
 ### 🧠 How It Works
 1. User hits your login route
