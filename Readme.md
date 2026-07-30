@@ -266,6 +266,41 @@ app.get("/api/auth/github/callback", async (req, res) => {
   return res.json(data);
 });
 ```
+### 🔐 GitHub Authentication
+
+#### Import Package
+##### CommonJS
+``` javascript
+const { GithubLogin, GithubCallback } = require("@kartikgangil/watchman_js");
+```
+##### ES Modules
+``` javascript
+import { GithubLogin, GithubCallback } from "@kartikgangil/watchman_js";
+```
+##### Initiate Login
+``` javascript
+app.get("/github", async (req, res) => {
+  const uri = await GithubLogin(
+    "http://localhost:8000/api/auth/github/callback",
+    clientId
+  );
+
+  return res.redirect(uri);
+});
+```
+#### Handle Callback
+``` javascript
+app.get("/api/auth/github/callback", async (req, res) => {
+  const data = await GithubCallback(
+    req.query.code,
+    clientId,
+    clientSecret
+  );
+
+  console.log(data);
+  return res.json(data);
+});
+```
 ### 🔐 Google Authentication
 ``` javascript
 // import package
