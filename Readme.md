@@ -291,6 +291,34 @@ app.get("/api/auth/google/callback", async (req, res) => {
   return res.json(data);
 });
 ```
+### 🔐 Google Authentication
+``` javascript
+// import package
+const { GoogleLogin, GoogleCallback } = require("@kartikgangil/watchman_js");
+
+// initate login uisng google O'auth
+app.get("/google", (req, res) => {
+  const uri = GoogleLogin(
+    googleClientId,
+    "http://localhost:8000/api/auth/google/callback"
+  );
+
+  return res.redirect(uri);
+});
+
+// handle Callback
+app.get("/api/auth/google/callback", async (req, res) => {
+  const data = await GoogleCallback(
+    req.query.code,
+    googleClientId,
+    googleClientSecret,
+    "http://localhost:8000/api/auth/google/callback"
+  );
+
+  console.log(data);
+  return res.json(data);
+});
+```
 ### 🔐 LinkedIn Authentication
 ``` javascript
 // import package
