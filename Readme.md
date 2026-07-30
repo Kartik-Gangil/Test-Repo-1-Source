@@ -319,34 +319,6 @@ app.get("/api/auth/linkedin/callback", async (req, res) => {
   return res.json(data);
 });
 ```
-### 🔐 Meta Authentication
-``` javascript
-// import package
-const { Meta, MetaCallback } = require("@kartikgangil/watchman_js");
-
-// initate login with Linked In 
-app.get("/meta", (req, res) => {
-  const uri = metaInLogin(
-    metaClientId,
-    "http://localhost:8000/api/auth/linkedin/callback"
-  );
-
-  return res.redirect(uri);
-});
-
-// handle callback
-app.get("/api/auth/meta/callback", async (req, res) => {
-  const data = await metaCallback(
-    req.query.code,
-    linkedinClientId,
-    linkedinClientSecret,
-    "http://localhost:8000/api/auth/meta/callback"
-  );
-
-  console.log(data);
-  return res.json(data);
-});
-```
 
 ### 🧠 How It Works
 1. User hits your login route
