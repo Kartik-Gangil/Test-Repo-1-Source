@@ -319,7 +319,34 @@ app.get("/api/auth/linkedin/callback", async (req, res) => {
   return res.json(data);
 });
 ```
+### 🔐 Meta Authentication
+```javascript
+// import package
+const { MetaLogin, MetaCallback } = require("@kartikgangil/watchman_js");
 
+// initiate login using Meta OAuth
+app.get("/meta", (req, res) => {
+  const uri = MetaLogin(
+    metaClientId,
+    "http://localhost:8000/api/auth/meta/callback"
+  );
+
+  return res.redirect(uri);
+});
+
+// handle callback
+app.get("/api/auth/meta/callback", async (req, res) => {
+  const data = await MetaCallback(
+    req.query.code,
+    metaClientId,
+    metaClientSecret,
+    "http://localhost:8000/api/auth/meta/callback"
+  );
+
+  console.log(data);
+  return res.json(data);
+});
+```
 ### 🧠 How It Works
 1. User hits your login route
 2. WATCHMAN JS generates the OAuth URL
