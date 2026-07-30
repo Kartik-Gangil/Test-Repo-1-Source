@@ -291,34 +291,6 @@ app.get("/api/auth/google/callback", async (req, res) => {
   return res.json(data);
 });
 ```
-### 🔐 Google Authentication
-``` javascript
-// import package
-const { GoogleLogin, GoogleCallback } = require("@kartikgangil/watchman_js");
-
-// initate login uisng google O'auth
-app.get("/google", (req, res) => {
-  const uri = GoogleLogin(
-    googleClientId,
-    "http://localhost:8000/api/auth/google/callback"
-  );
-
-  return res.redirect(uri);
-});
-
-// handle Callback
-app.get("/api/auth/google/callback", async (req, res) => {
-  const data = await GoogleCallback(
-    req.query.code,
-    googleClientId,
-    googleClientSecret,
-    "http://localhost:8000/api/auth/google/callback"
-  );
-
-  console.log(data);
-  return res.json(data);
-});
-```
 ### 🔐 LinkedIn Authentication
 ``` javascript
 // import package
@@ -347,15 +319,15 @@ app.get("/api/auth/linkedin/callback", async (req, res) => {
   return res.json(data);
 });
 ```
-### 🔐 LinkedIn Authentication
+### 🔐 Meta Authentication
 ``` javascript
 // import package
-const { LinkedInLogin, LinkedInCallback } = require("@kartikgangil/watchman_js");
+const { Meta, MetaCallback } = require("@kartikgangil/watchman_js");
 
 // initate login with Linked In 
-app.get("/linkedin", (req, res) => {
-  const uri = LinkedInLogin(
-    linkedinClientId,
+app.get("/meta", (req, res) => {
+  const uri = metaInLogin(
+    metaClientId,
     "http://localhost:8000/api/auth/linkedin/callback"
   );
 
@@ -363,12 +335,12 @@ app.get("/linkedin", (req, res) => {
 });
 
 // handle callback
-app.get("/api/auth/linkedin/callback", async (req, res) => {
-  const data = await LinkedInCallback(
+app.get("/api/auth/meta/callback", async (req, res) => {
+  const data = await metaCallback(
     req.query.code,
     linkedinClientId,
     linkedinClientSecret,
-    "http://localhost:8000/api/auth/linkedin/callback"
+    "http://localhost:8000/api/auth/meta/callback"
   );
 
   console.log(data);
