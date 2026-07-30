@@ -5,9 +5,6 @@
 WATCHMAN JS is a lightweight authentication library that simplifies OAuth integration across multiple platforms. Instead of handling different OAuth flows separately, you get a unified and easy-to-use interface.
 
 ---
-<!-- ad space -->
-<!-- ad space -->
-<!-- ad space -->
 
 ## 🌐 Supported Platforms
 
@@ -266,41 +263,6 @@ app.get("/api/auth/github/callback", async (req, res) => {
   return res.json(data);
 });
 ```
-### 🔐 GitHub Authentication
-
-#### Import Package
-##### CommonJS
-``` javascript
-const { GithubLogin, GithubCallback } = require("@kartikgangil/watchman_js");
-```
-##### ES Modules
-``` javascript
-import { GithubLogin, GithubCallback } from "@kartikgangil/watchman_js";
-```
-##### Initiate Login
-``` javascript
-app.get("/github", async (req, res) => {
-  const uri = await GithubLogin(
-    "http://localhost:8000/api/auth/github/callback",
-    clientId
-  );
-
-  return res.redirect(uri);
-});
-```
-#### Handle Callback
-``` javascript
-app.get("/api/auth/github/callback", async (req, res) => {
-  const data = await GithubCallback(
-    req.query.code,
-    clientId,
-    clientSecret
-  );
-
-  console.log(data);
-  return res.json(data);
-});
-```
 ### 🔐 Google Authentication
 ``` javascript
 // import package
@@ -323,146 +285,6 @@ app.get("/api/auth/google/callback", async (req, res) => {
     googleClientId,
     googleClientSecret,
     "http://localhost:8000/api/auth/google/callback"
-  );
-
-  console.log(data);
-  return res.json(data);
-});
-```
-### 🔐 Google Authentication
-``` javascript
-// import package
-const { GoogleLogin, GoogleCallback } = require("@kartikgangil/watchman_js");
-
-// initate login uisng google O'auth
-app.get("/google", (req, res) => {
-  const uri = GoogleLogin(
-    googleClientId,
-    "http://localhost:8000/api/auth/google/callback"
-  );
-
-  return res.redirect(uri);
-});
-
-// handle Callback
-app.get("/api/auth/google/callback", async (req, res) => {
-  const data = await GoogleCallback(
-    req.query.code,
-    googleClientId,
-    googleClientSecret,
-    "http://localhost:8000/api/auth/google/callback"
-  );
-
-  console.log(data);
-  return res.json(data);
-});
-```
-### 🔐 Google Authentication
-``` javascript
-// import package
-const { GoogleLogin, GoogleCallback } = require("@kartikgangil/watchman_js");
-
-// initate login uisng google O'auth
-app.get("/google", (req, res) => {
-  const uri = GoogleLogin(
-    googleClientId,
-    "http://localhost:8000/api/auth/google/callback"
-  );
-
-  return res.redirect(uri);
-});
-
-// handle Callback
-app.get("/api/auth/google/callback", async (req, res) => {
-  const data = await GoogleCallback(
-    req.query.code,
-    googleClientId,
-    googleClientSecret,
-    "http://localhost:8000/api/auth/google/callback"
-  );
-
-  console.log(data);
-  return res.json(data);
-});
-```
-### 🔐 Google Authentication
-``` javascript
-// import package
-const { GoogleLogin, GoogleCallback } = require("@kartikgangil/watchman_js");
-
-// initate login uisng google O'auth
-app.get("/google", (req, res) => {
-  const uri = GoogleLogin(
-    googleClientId,
-    "http://localhost:8000/api/auth/google/callback"
-  );
-
-  return res.redirect(uri);
-});
-
-// handle Callback
-app.get("/api/auth/google/callback", async (req, res) => {
-  const data = await GoogleCallback(
-    req.query.code,
-    googleClientId,
-    googleClientSecret,
-    "http://localhost:8000/api/auth/google/callback"
-  );
-
-  console.log(data);
-  return res.json(data);
-});
-```
-### 🔐 Google Authentication
-``` javascript
-// import package
-const { GoogleLogin, GoogleCallback } = require("@kartikgangil/watchman_js");
-
-// initate login uisng google O'auth
-app.get("/google", (req, res) => {
-  const uri = GoogleLogin(
-    googleClientId,
-    "http://localhost:8000/api/auth/google/callback"
-  );
-
-  return res.redirect(uri);
-});
-
-// handle Callback
-app.get("/api/auth/google/callback", async (req, res) => {
-  const data = await GoogleCallback(
-    req.query.code,
-    googleClientId,
-    googleClientSecret,
-    "http://localhost:8000/api/auth/google/callback"
-  );
-
-  console.log(data);
-  return res.json(data);
-});
-```
-### 🔐 LinkedIn Authentication
-``` javascript
-// import package
-const { LinkedInLogin, LinkedInCallback } = require("@kartikgangil/watchman_js");
-
-// initate login with Linked In 
-app.get("/linkedin", (req, res) => {
-  const uri = LinkedInLogin(
-    linkedinClientId,
-    "http://localhost:8000/api/auth/linkedin/callback"
-  );
-
-  return res.redirect(uri);
-});
-
-// handle callback
-app.get("/api/auth/linkedin/callback", async (req, res) => {
-  const data = await LinkedInCallback(
-    req.query.code,
-    linkedinClientId,
-    linkedinClientSecret,
-    "http://localhost:8000/api/auth/linkedin/callback"
   );
 
   console.log(data);
